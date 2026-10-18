@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tử Cấm Thành - 15 Slides High-End Cinematic Experience</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        imperial: {
+                            red: '#8B0000',
+                            brightred: '#C41E3A',
+                            darkred: '#2A0000',
+                            gold: '#D4AF37',
+                            lightgold: '#FFE57F',
+                            dark: '#0A0A0C',
+                            slate: '#120E10',
+                            jade: '#2E8B57'
+                        }
+                    },
+                    fontFamily: {
+                        cinzelDeco: ['Cinzel Decorative', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        cormorant: ['Cormorant Garamond', 'serif'],
+                        noto: ['Noto Serif SC', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Reset & Baseline */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0A0A0C;
+            color: #E2E8F0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Gold Foil Gradient Text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 0px 25px rgba(212, 175, 55, 0.35);
+        }
+
+        /* Red Seal Stamp */
+        .imperial-seal {
+            width: 48px;
+            height: 48px;
+            background: #990000;
+            border: 2px solid #FFD700;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.7), 0 0 15px rgba(153, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Serif SC', serif;
+            color: #FFD700;
+            font-weight: 900;
+            font-size: 1rem;
+            writing-mode: vertical-rl;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .imperial-seal::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border: 1px dashed rgba(255,215,0,0.5);
+        }
+
+        /* Slider Core Container */
+        .slider-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            perspective: 1600px;
+        }
+
+        /* Slide Transition Morphing Effects */
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            clip-path: circle(0.0% at 50% 50%);
+            transition: clip-path 1.4s cubic-bezier(0.77, 0, 0.175, 1), 
+                        opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.4s cubic-bezier(0.77, 0, 0.175, 1),
+                        visibility 1.4s;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        /* Different FX variations per slide type */
+        .slide[data-fx="morph"] {
+            clip-path: circle(0.0% at 50% 50%);
+        }
+        .slide[data-fx="morph"].active {
+            clip-path: circle(150.0% at 50% 50%);
+        }
+
+        .slide[data-fx="ink"] {
+            clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+            filter: contrast(140%) brightness(0.7);
+        }
+        .slide[data-fx="ink"].active {
+            clip-path: polygon(-20% -20%, 120% -20%, 120% 120%, -20% 120%);
+            filter: contrast(100%) brightness(1);
+        }
+
+        .slide[data-fx="zoom"] {
+            transform: scale(1.4) translateZ(100px);
+            clip-path: circle(100% at 50% 50%);
+        }
+        .slide[data-fx="zoom"].active {
+            transform: scale(1) translateZ(0);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Slide Leaving State */
+        .slide.leaving {
+            opacity: 0.15;
+            transform: scale(1.25) translateZ(120px);
+            filter: blur(15px) contrast(140%);
+            transition: all 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 5;
+        }
+
+        /* Volumetric Light Rays & Fog Layers */
+        .fog-layer {
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+                        radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.22) 0%, transparent 50%);
+            filter: blur(40px);
+            animation: fogMove 25s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes fogMove {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(-3%, 4%); }
+        }
+
+        /* Slide Background Pan */
+        .slide-bg {
+            position: absolute;
+            inset: -5%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: brightness(0.38) contrast(1.25) saturate(1.1);
+        }
+
+        .slide.active .slide-bg {
+            animation: cinematicPan 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes cinematicPan {
+            0% { transform: scale(1.05) translate(0%, 0%); }
+            100% { transform: scale(1.18) translate(-1.5%, -1.5%); }
+        }
+
+        /* Vignette Light Mask */
+        .vignette-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(10, 10, 12, 0.1) 0%, rgba(10, 10, 12, 0.75) 70%, rgba(10, 10, 12, 0.98) 100%),
+                        linear-gradient(to bottom, rgba(139, 0, 0, 0.25) 0%, transparent 35%, transparent 65%, rgba(10, 10, 12, 0.92) 100%);
+            pointer-events: none;
+        }
+
+        /* Layered Content Animations */
+        .animate-item {
+            opacity: 0;
+            transform: translateY(45px) translateZ(-40px) rotateX(8deg);
+            filter: blur(10px);
+            transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
+        }
+
+        .slide.active .animate-item {
+            opacity: 1;
+            transform: translateY(0) translateZ(0) rotateX(0deg);
+            filter: blur(0px);
+        }
+
+        /* Dynamic Stagger Delays */
+        .slide.active .delay-1 { transition-delay: 0.2s; }
+        .slide.active .delay-2 { transition-delay: 0.38s; }
+        .slide.active .delay-3 { transition-delay: 0.56s; }
+        .slide.active .delay-4 { transition-delay: 0.74s; }
+        .slide.active .delay-5 { transition-delay: 0.92s; }
+
+        /* Morphing Box / Card */
+        .morph-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .morph-card:hover {
+            border-color: rgba(255, 229, 127, 0.8);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .morph-card img {
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+        }
+
+        .morph-card:hover img {
+            transform: scale(1.12);
+            filter: brightness(1.1);
+        }
+
+        /* Canvas Particle Overlay */
+        #particleCanvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* Timeline Controls */
+        .timeline-track {
+            position: relative;
+            height: 2px;
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #8B0000, #D4AF37, #FFE57F);
+            box-shadow: 0 0 12px #D4AF37;
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Custom Audio / Nav Glass Buttons */
+        .glass-btn {
+            background: rgba(10, 10, 12, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+        .glass-btn:hover {
+            border-color: #FFE57F;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            color: #FFE57F;
+        }
+        .glass-btn.playing {
+            border-color: #FFE57F;
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.5);
+            color: #FFE57F;
+        }
+
+        /* Drawer Sidebar & Overview Grid Modal */
+        .drawer {
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .drawer.closed {
+            transform: translateX(100%);
+        }
+
+        .modal-overview {
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .modal-overview.closed {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0A0C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-imperial-dark text-slate-100 h-screen w-screen overflow-hidden select-none">
+
+    <!-- Canvas Particle System (Gold Dust & Fog) -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Header Frame Overlay -->
+    <header class="fixed top-0 left-0 w-full z-50 p-4 md:p-6 flex justify-between items-center pointer-events-none">
+        <div class="flex items-center space-x-4 pointer-events-auto">
+            <div class="imperial-seal">紫禁城</div>
+            <div>
+                <h1 class="font-cinzelDeco text-sm md:text-base tracking-[0.2em] text-imperial-gold font-bold">TỬ CẤM THÀNH</h1>
+                <p class="font-cormorant italic text-xs tracking-widest text-gray-400">The Forbidden City • Imperial Palace</p>
+            </div>
+        </div>
+
+        <!-- Controls Header Right -->
+        <div class="pointer-events-auto flex items-center space-x-3 md:space-x-4">
+            <!-- Sound Button -->
+            <button id="soundToggleBtn" onclick="toggleAudio()" class="glass-btn px-3 py-2 rounded-full flex items-center gap-2 text-xs text-imperial-gold font-cinzel">
+                <i id="soundIcon" class="fa-solid fa-volume-xmark"></i>
+                <span id="soundText" class="hidden sm:inline tracking-wider">ÂM THANH: TẮT</span>
+            </button>
+
+            <!-- Overview Grid Toggle -->
+            <button onclick="toggleOverviewModal()" class="glass-btn w-9 h-9 rounded-full flex items-center justify-center text-imperial-gold" title="Xem Toàn Bộ 15 Slide (Overview)">
+                <i class="fa-solid fa-border-all text-xs"></i>
+            </button>
+
+            <!-- Drawer Thumbnail Toggle -->
+            <button onclick="toggleDrawer()" class="glass-btn w-9 h-9 rounded-full flex items-center justify-center text-imperial-gold" title="Danh Sách Slide">
+                <i class="fa-solid fa-list-ul text-xs"></i>
+            </button>
+
+            <!-- Fullscreen Toggle -->
+            <button onclick="toggleFullscreen()" class="glass-btn w-9 h-9 rounded-full flex items-center justify-center text-imperial-gold" title="Toàn Màn Hình">
+                <i class="fa-solid fa-expand text-xs"></i>
+            </button>
+
+            <!-- Slide Counter -->
+            <div class="flex items-center space-x-2 bg-imperial-dark/90 px-3 py-1.5 border border-imperial-gold/30 rounded-sm backdrop-blur-md">
+                <span id="currentSlideNum" class="font-cinzel text-lg text-imperial-lightgold font-bold">01</span>
+                <span class="text-xs text-imperial-gold/40">/</span>
+                <span id="totalSlideNum" class="font-cinzel text-xs text-gray-400">15</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Slider Container (15 Slides) -->
+    <div class="slider-container" id="slider">
+
+        <!-- SLIDE 1: TRỤ VŨ & KHAI CỤ -->
+        <div class="slide active" data-index="0" data-fx="morph">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+                <div class="animate-item delay-1 mb-4 inline-flex items-center gap-3 px-6 py-1.5 border-y border-imperial-gold/50 text-imperial-lightgold tracking-[0.4em] text-xs font-cinzel uppercase">
+                    <span class="w-2 h-2 rotate-45 bg-imperial-gold"></span>
+                    TRÁI TIM QUYỀN LỰC THIÊN HẠ
+                    <span class="w-2 h-2 rotate-45 bg-imperial-gold"></span>
+                </div>
+                
+                <h1 class="animate-item delay-2 font-cinzelDeco text-4xl sm:text-6xl md:text-8xl font-black tracking-wider uppercase mb-6 leading-tight gold-gradient-text drop-shadow-2xl">
+                    TRỤ VŨ & KHAI CỤ
+                </h1>
+                
+                <p class="animate-item delay-3 font-cormorant italic text-xl sm:text-3xl text-gray-200 max-w-3xl mb-10 leading-relaxed">
+                    "Giữa lòng Bắc Kinh trầm mặc, Cố Cung sừng sững như một kiệt tác phong thủy đỉnh cao — Nơi quy tụ linh khí đất trời và uy quyền tuyệt đối của các vị Hoàng Đế."
+                </p>
+                
+                <div class="animate-item delay-4 flex items-center gap-6">
+                    <button onclick="nextSlide()" class="group relative px-10 py-4 overflow-hidden bg-imperial-red/90 border border-imperial-gold text-imperial-lightgold font-cinzel tracking-[0.2em] text-sm hover:bg-imperial-brightred transition-all duration-500 shadow-[0_0_30px_rgba(139,0,0,0.8)]">
+                        <span class="relative z-10 flex items-center gap-3">
+                            KHÁM PHÁ CỐ CUNG <i class="fa-solid fa-compass text-xs group-hover:rotate-180 transition-transform duration-700"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: LỊCH SỬ KHỞI DỰNG -->
+        <div class="slide" data-index="1" data-fx="ink">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="animate-item delay-1 flex items-center space-x-3">
+                        <span class="h-[1px] w-16 bg-imperial-gold"></span>
+                        <span class="text-imperial-lightgold font-cinzel text-xs tracking-[0.3em] uppercase">Chương I • Bình Minh Minh Triều</span>
+                    </div>
+                    
+                    <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        LỊCH SỬ KHỞI DỰNG <br/><span class="gold-gradient-text">(1406 - 1420)</span>
+                    </h2>
+                    
+                    <p class="animate-item delay-3 text-gray-300 text-sm md:text-base leading-relaxed font-light font-cormorant text-xl">
+                        Năm 1406, Minh Thành Tổ Chu Đệ ra lệnh dời đô từ Nam Kinh về Bắc Kinh và khởi công xây dựng Tử Cấm Thành. Trong suốt 14 năm, hơn 1 triệu phu dịch và 100.000 thợ thủ công lành nghề đã tạo nên kiệt tác này.
+                    </p>
+
+                    <div class="animate-item delay-4 grid grid-cols-3 gap-4 pt-2">
+                        <div class="p-4 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                            <div class="font-cinzel text-2xl md:text-3xl text-imperial-lightgold font-bold">14 Năm</div>
+                            <div class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest">Thi công liên tục</div>
+                        </div>
+                        <div class="p-4 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                            <div class="font-cinzel text-2xl md:text-3xl text-imperial-lightgold font-bold">1 Triệu</div>
+                            <div class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest">Phu dịch tham gia</div>
+                        </div>
+                        <div class="p-4 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                            <div class="font-cinzel text-2xl md:text-3xl text-imperial-lightgold font-bold">100.000</div>
+                            <div class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest">Nghệ nhân bậc thầy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 animate-item delay-3">
+                    <div class="morph-card p-3 bg-imperial-dark/70 backdrop-blur-md rounded-sm" onclick="expandImage(this)">
+                        <img src="https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?q=80&w=1000&auto=format&fit=crop" alt="Construction" class="w-full h-80 object-cover">
+                        <div class="p-4 text-center border-t border-imperial-gold/20 mt-2">
+                            <span class="text-xs text-imperial-gold font-cinzel tracking-widest uppercase">Gỗ Nam Mộc & Gạch Kim Chuyên <i class="fa-solid fa-expand ml-2"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: TRỤC THẦN ĐẠO -->
+        <div class="slide" data-index="2" data-fx="zoom">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full text-center">
+                <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.4em] uppercase mb-2">Chương II • Phong Thủy Hoàng Gia</div>
+                <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-6xl font-bold text-white mb-4">
+                    TRỤC THẦN ĐẠO <br/><span class="gold-gradient-text">SACRED MERIDIAN AXIS</span>
+                </h2>
+                <p class="animate-item delay-3 text-gray-300 font-cormorant text-xl max-w-3xl mx-auto mb-10 italic">
+                    Trục trung tâm Nam - Bắc kéo dài 8km xuyên suốt Bắc Kinh, định hình vị thế Tử Cấm Thành đúng tại trung tâm vũ trụ theo quan niệm Thiên Tử.
+                </p>
+
+                <div class="animate-item delay-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                    <div class="bg-imperial-dark/80 border border-imperial-gold/30 p-6 backdrop-blur-md">
+                        <div class="text-imperial-gold font-cinzel text-xs tracking-widest uppercase mb-1">Cực Nam</div>
+                        <h3 class="font-cinzel text-lg text-imperial-lightgold font-bold mb-2">Vĩnh Định Môn</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Cổng khởi đầu của Trục Thần Đạo, dẫn lối khí tụ vào trung tâm hoàng thành.</p>
+                    </div>
+
+                    <div class="bg-imperial-dark/80 border border-imperial-gold/40 p-6 backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                        <div class="text-imperial-gold font-cinzel text-xs tracking-widest uppercase mb-1">Trung Tâm</div>
+                        <h3 class="font-cinzel text-lg text-imperial-lightgold font-bold mb-2">Ngái Vàng Thái Hòa Điện</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Giao điểm linh khí thiêng liêng nhất, nơi Hoàng đế tọa bắc hướng nam trị quốc.</p>
+                    </div>
+
+                    <div class="bg-imperial-dark/80 border border-imperial-gold/30 p-6 backdrop-blur-md">
+                        <div class="text-imperial-gold font-cinzel text-xs tracking-widest uppercase mb-1">Cực Bắc</div>
+                        <h3 class="font-cinzel text-lg text-imperial-lightgold font-bold mb-2">Cảnh Sơn & Tháp Cổ</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Ngọn núi nhân tạo phía sau Cố Cung đóng vai trò làm điểm tựa phong thủy vững chắc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: NGỌ MÔN -->
+        <div class="slide" data-index="3" data-fx="morph">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="animate-item delay-1 flex items-center space-x-3">
+                        <span class="h-[1px] w-16 bg-imperial-gold"></span>
+                        <span class="text-imperial-gold font-cinzel text-xs tracking-[0.3em] uppercase">Chương III • Đại Cung Môn</span>
+                    </div>
+
+                    <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        NGỌ MÔN <br/><span class="gold-gradient-text">THE MERIDIAN GATE</span>
+                    </h2>
+
+                    <p class="animate-item delay-3 font-cormorant text-xl text-gray-300 leading-relaxed">
+                        Cổng chính phía Nam nguy nga nhất Tử Cấm Thành với thiết kế hình chữ U bao gồm 5 tháp lâu (Ngũ Phụng Lâu). Đây là nơi ban hành Hoàng Lịch, duyệt binh thắng trận và tiến hành nghi lễ đại xá.
+                    </p>
+
+                    <div class="animate-item delay-4 space-y-3 font-sans text-xs">
+                        <div class="flex items-center gap-3 p-3 bg-imperial-dark/80 border-l-2 border-imperial-gold">
+                            <i class="fa-solid fa-door-open text-imperial-gold text-lg"></i>
+                            <div><strong>Cửa Chính Giữa:</strong> Chỉ dành riêng cho Hoàng Đế đi qua (Trừ Hoàng Hậu ngày đại hôn).</div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-imperial-dark/80 border-l-2 border-imperial-gold">
+                            <i class="fa-solid fa-scroll text-imperial-gold text-lg"></i>
+                            <div><strong>Ban Lịch Triều Đình:</strong> Nơi các quan thần tiếp nhận lịch hàng năm vào ngày Mùng 1 tháng 12.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 animate-item delay-3">
+                    <div class="morph-card border border-imperial-gold/40 p-2 bg-black/80" onclick="expandImage(this)">
+                        <img src="https://images.unsplash.com/photo-1528164344705-47542687990d?q=80&w=1000&auto=format&fit=crop" alt="Meridian Gate" class="w-full h-80 sm:h-96 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: THÁI HÒA ĐIỆN -->
+        <div class="slide" data-index="4" data-fx="ink">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full text-center">
+                <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.4em] uppercase mb-2">Chương IV • Trái Tim Cố Cung</div>
+                <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-6xl font-bold text-white mb-4">
+                    THÁI HÒA ĐIỆN <br/><span class="gold-gradient-text">HALL OF SUPREME HARMONY</span>
+                </h2>
+                <p class="animate-item delay-3 text-gray-300 font-cormorant text-xl max-w-3xl mx-auto mb-8 italic">
+                    Tòa điện bằng gỗ lớn nhất Trung Hoa, cao 26.92m, tọa lạc trên đài đá cẩm thạch ba tầng hoành tráng. Nơi cử hành các đại lễ đăng quang, vạn thọ và lễ xuất quân.
+                </p>
+
+                <div class="animate-item delay-4 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left max-w-4xl mx-auto">
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <div class="text-imperial-lightgold font-cinzel text-xl font-bold mb-1">72 Trụ Cột</div>
+                        <p class="text-xs text-gray-400">Gỗ Nam Mộc nguyên khối cực kỳ quý hiếm đỡ toàn bộ bộ mái.</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <div class="text-imperial-lightgold font-cinzel text-xl font-bold mb-1">11 Gian Điện</div>
+                        <p class="text-xs text-gray-400">Quy mô gian điện đạt cấp độ tối cao duy nhất trong kiến trúc cổ.</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <div class="text-imperial-lightgold font-cinzel text-xl font-bold mb-1">Vạn Tuế Âm</div>
+                        <p class="text-xs text-gray-400">Thiết kế âm vang đặc biệt khiến tiếng hô vạn tuế dội khắp sân điện.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: NGAI VÀNG LONG TÒA -->
+        <div class="slide" data-index="5" data-fx="zoom">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+                <div class="animate-item delay-1 w-16 h-16 rounded-full bg-imperial-gold/10 border border-imperial-gold flex items-center justify-center mb-4 text-imperial-lightgold shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                    <i class="fa-solid fa-crown text-2xl"></i>
+                </div>
+
+                <div class="animate-item delay-2 text-imperial-gold font-cinzel text-xs tracking-[0.5em] uppercase mb-2">Chương V • Chí Tôn Uy Quyền</div>
+
+                <h2 class="animate-item delay-3 font-cinzel text-3xl sm:text-6xl font-bold text-white mb-6">
+                    NGAI VÀNG LONG TÒA <br/><span class="gold-gradient-text">THE DRAGON THRONE</span>
+                </h2>
+
+                <p class="animate-item delay-4 font-cormorant text-xl sm:text-2xl text-gray-200 max-w-3xl mb-8 leading-relaxed">
+                    Đặt tại chính điện Thái Hòa, Ngai Vàng Long Tòa được chạm khắc 13 con rồng dát vàng kim tinh xảo. Phía trên đỉnh trần là Hiên Viên Cầu (Quả cầu ngọc) có thể rơi xuống trừng phạt bất kỳ ai tiếm vị không chính thống.
+                </p>
+
+                <div class="animate-item delay-5 flex flex-wrap justify-center gap-4 text-xs font-sans">
+                    <span class="px-4 py-2 bg-imperial-dark/80 border border-imperial-gold/40 text-imperial-lightgold">Gỗ Đàn Hương Dát Vàng</span>
+                    <span class="px-4 py-2 bg-imperial-dark/80 border border-imperial-gold/40 text-imperial-lightgold">13 Con Rồng Cuộn Mây</span>
+                    <span class="px-4 py-2 bg-imperial-dark/80 border border-imperial-gold/40 text-imperial-lightgold">Hiên Viên Bảo Cầu Phong Thủy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: TRUNG HÒA & BẢO HÒA ĐIỆN -->
+        <div class="slide" data-index="6" data-fx="morph">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.3em] uppercase">Chương VI • Hậu Tam Điện Ngoại Triều</div>
+                    <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        TRUNG HÒA & <br/><span class="gold-gradient-text">BẢO HÒA ĐIỆN</span>
+                    </h2>
+                    <p class="animate-item delay-3 font-cormorant text-xl text-gray-300 leading-relaxed">
+                        Hai tòa điện tiếp nối phía sau Điện Thái Hòa. Trung Hòa Điện là nơi Hoàng đế nghỉ ngơi và duyệt sớ trước nghi lễ, còn Bảo Hòa Điện là nơi tổ chức Điện Thí (kỳ thi Tiến sĩ chọn hiền tài) và các tiệc mừng hoàng tộc.
+                    </p>
+                </div>
+
+                <div class="space-y-4 animate-item delay-3">
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold font-bold mb-1">Trung Hòa Điện (Central Harmony)</h3>
+                        <p class="text-xs text-gray-400">Thiết kế hình vuông độc đáo, nơi xem xét hạt giống nông nghiệp trước lễ tế Tế Điền.</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold font-bold mb-1">Bảo Hòa Điện (Preserving Harmony)</h3>
+                        <p class="text-xs text-gray-400">Nơi diễn ra các kỳ thi Đình đỉnh cao chọn ra Trạng nguyên, Bảng nhãn, Thám hoa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: CÀN THANH MÔN -->
+        <div class="slide" data-index="7" data-fx="ink">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full text-center">
+                <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.4em] uppercase mb-2">Chương VII • Ranh Giới Quyền Lực</div>
+                <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-6xl font-bold text-white mb-4">
+                    CÀN THANH MÔN <br/><span class="gold-gradient-text">RANH GIỚI NỘI ĐÌNH & NGOẠI TRIỀU</span>
+                </h2>
+                <p class="animate-item delay-3 text-gray-300 font-cormorant text-xl max-w-3xl mx-auto mb-8 italic">
+                    Cánh cổng phân định ranh giới nghiêm ngặt giữa Ngoại Triều (nơi bàn việc quốc gia đại sự) và Nội Đình (chốn sinh hoạt riêng tư của hoàng tộc).
+                </p>
+
+                <div class="animate-item delay-4 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
+                    <div class="p-6 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-lg font-bold mb-2">Thính Chính Càn Thanh Môn</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Thời Khang Hi, các buổi triều sớm diễn ra ngay tại cổng này, Hoàng đế ngồi ngai vàng lắng nghe các bộ viện tấu trình từ 5h sáng.</p>
+                    </div>
+                    <div class="p-6 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-lg font-bold mb-2">Sư Tử Đồng Mạ Vàng</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Đôi sư tử đồng tai rủ xuống trấn giữ Càn Thanh Môn mang ý nghĩa nhắc nhở hậu cung và thái giám không được can thiệp triều chính.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: CÀN THANH CUNG -->
+        <div class="slide" data-index="8" data-fx="zoom">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.3em] uppercase">Chương VIII • Tẩm Cung Hoàng Đế</div>
+                    <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        CÀN THANH CUNG <br/><span class="gold-gradient-text">& BIỂN "CHÍNH ĐẠI QUANG MINH"</span>
+                    </h2>
+                    <p class="animate-item delay-3 font-cormorant text-xl text-gray-300 leading-relaxed">
+                        Nơi ở của 14 vị Hoàng đế thời Minh và 2 vị Hoàng đế đầu thời Thanh. Phía trên ngai vàng treo bức hoành phi "Chính Đại Quang Minh" do Thuận Trị Đế tự tay viết.
+                    </p>
+
+                    <div class="animate-item delay-4 p-4 bg-imperial-dark/80 border-l-4 border-imperial-gold backdrop-blur-md">
+                        <h4 class="font-cinzel text-imperial-lightgold text-sm font-bold mb-1">Bí Mật Mật Lập Thái Tử</h4>
+                        <p class="text-xs text-gray-400">Từ thời Ung Chính, chiếu thư chỉ định người kế vị được giấu kín sau tấm biển "Chính Đại Quang Minh" và chỉ được mở ra khi Hoàng đế băng hà.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 animate-item delay-3">
+                    <div class="morph-card p-2 bg-imperial-dark/80 border border-imperial-gold/30">
+                        <img src="https://images.unsplash.com/photo-1528164344705-47542687990d?q=80&w=1000&auto=format&fit=crop" alt="Palace of Heavenly Purity" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: KHÔN NINH CUNG -->
+        <div class="slide" data-index="9" data-fx="morph">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full text-center">
+                <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.4em] uppercase mb-2">Chương IX • Hậu Cung Ba Ngàn Mỹ Nữ</div>
+                <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-6xl font-bold text-white mb-4">
+                    KHÔN NINH CUNG <br/><span class="gold-gradient-text">CHỐN KHUÊ VĂN HOÀNG HẬU</span>
+                </h2>
+                <p class="animate-item delay-3 text-gray-300 font-cormorant text-xl max-w-3xl mx-auto mb-8 italic">
+                    Tẩm cung chính thức của Hoàng hậu. Thời Thanh, Khôn Ninh Cung được cải tạo làm phòng động phòng đại hôn của Hoàng đế và nơi tế lễ shaman giáo.
+                </p>
+
+                <div class="animate-item delay-4 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-sm font-bold mb-1">Động Phòng Hoàng Gia</h3>
+                        <p class="text-xs text-gray-400">Căn phòng sơn đỏ dát vàng dành riêng cho 3 đêm đại hôn đầu tiên của Hoàng đế.</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-sm font-bold mb-1">Tây Lục Cung & Đông Lục Cung</h3>
+                        <p class="text-xs text-gray-400">12 dãy cung điện hai bên nơi sinh sống của hàng ngàn phi tần, quý nhân.</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-sm font-bold mb-1">Tranh Sủng & Nghi Lễ</h3>
+                        <p class="text-xs text-gray-400">Nơi chứng kiến biết bao biến cố hậu cung, quy tắc ứng xử và phân chia thứ bậc khắt khe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: NGỰ HOA VIÊN -->
+        <div class="slide" data-index="10" data-fx="ink">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.3em] uppercase">Chương X • Thượng Uyển Hoàng Gia</div>
+                    <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        NGỰ HOA VIÊN <br/><span class="gold-gradient-text">THE IMPERIAL GARDEN</span>
+                    </h2>
+                    <p class="animate-item delay-3 font-cormorant text-xl text-gray-300 leading-relaxed">
+                        Tọa lạc tại cực bắc Cố Cung, rộng 12.000m². Ngự Hoa Viên kết hợp tinh tế giữa núi đá Thái Hồ kỳ thú, lầu thưởng nguyệt cổ kính và hàng trăm cây cổ thụ hàng trăm năm tuổi.
+                    </p>
+
+                    <div class="animate-item delay-4 space-y-2 text-xs font-sans text-gray-300">
+                        <div class="p-3 bg-imperial-dark/80 border-l-2 border-imperial-gold">
+                            <strong>Đ堆秀山 (Đôi Tú Sơn):</strong> Ngọn núi đá nhân tạo cao 10m với đỉnh Ngự Cảnh Đình quan sát toàn cảnh Cố Cung.
+                        </div>
+                        <div class="p-3 bg-imperial-dark/80 border-l-2 border-imperial-gold">
+                            <strong>Bách Cổ Thụ Trăm Năm:</strong> Cây bách giao chi quấn quít tượng trưng cho tình yêu hoàng gia bền chặt.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 animate-item delay-3">
+                    <div class="morph-card border border-imperial-gold/30 p-2 bg-black/80" onclick="expandImage(this)">
+                        <img src="https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?q=80&w=1000&auto=format&fit=crop" alt="Imperial Garden" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: MÁI NGÓI LƯU LY -->
+        <div class="slide" data-index="11" data-fx="zoom">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full text-center">
+                <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.4em] uppercase mb-2">Chương XI • Mĩ Thuật Đỉnh Cao</div>
+                <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-6xl font-bold text-white mb-4">
+                    MÁI NGÓI LƯU LY VÀNG <br/><span class="gold-gradient-text">& BÍCH HỌA CUNG ĐÌNH</span>
+                </h2>
+                <p class="animate-item delay-3 text-gray-300 font-cormorant text-xl max-w-3xl mx-auto mb-8 italic">
+                    Sự kết hợp hoàn mỹ giữa sắc đỏ hoàng gia của tường gạch và sắc vàng rực rỡ của mái ngói lưu ly — Màu sắc độc quyền chỉ dành riêng cho Hoàng đế.
+                </p>
+
+                <div class="animate-item delay-4 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-sm font-bold mb-1">Ngói Lưu Ly Vàng</h3>
+                        <p class="text-xs text-gray-400">Thổ tượng trưng cho Trung tâm Ngũ Hành, đại diện quyền uy và sự trật tự tối cao.</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-sm font-bold mb-1">Mái Ngói Xanh Riêng Biệt</h3>
+                        <p class="text-xs text-gray-400">Văn Thuyết Cung (Thư viện hoàng gia) dùng ngói đen/xanh tượng trưng cho Thủy để phòng hỏa hụi.</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-sm font-bold mb-1">Đấu Củng Chạm Rồng</h3>
+                        <p class="text-xs text-gray-400">Kỹ thuật ghép gỗ không dùng đinh chịu lực phi thường qua hàng trăm trận động đất.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: LINH VẬT TRẤN GIỮ -->
+        <div class="slide" data-index="12" data-fx="morph">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full text-center">
+                <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.4em] uppercase mb-2">Chương XII • Hộ Vệ Tấn Tai</div>
+                <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-6xl font-bold text-white mb-4">
+                    LINH VẬT TRẤN GIỮ <br/><span class="gold-gradient-text">PHONG THỦY CỐ CUNG</span>
+                </h2>
+                <p class="animate-item delay-3 text-gray-300 font-cormorant text-xl max-w-3xl mx-auto mb-8 italic">
+                    Các linh thú đá và đồng xuất hiện trên mái nhà, bậc thềm không chỉ trang trí mà còn mang sứ mệnh trừ tà, cầu bình an và xua tan thiên tai hỏa hụi.
+                </p>
+
+                <div class="animate-item delay-4 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-base font-bold mb-1">10 Linh Thú Mái Nhà</h3>
+                        <p class="text-xs text-gray-400">Đứng đầu là Tiên nhân cưỡi phượng, theo sau là Rồng, Phượng, Sư tử, Hải mã, Áp ngư, Hành thập...</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-base font-bold mb-1">Sư Tử Đá Trấn Môn</h3>
+                        <p class="text-xs text-gray-400">Sư tử đực đè quả cầu (Quyền lực), sư tử cái vờn sư tử con (Vạn thế trường tồn).</p>
+                    </div>
+                    <div class="p-5 bg-imperial-dark/80 border border-imperial-gold/30 backdrop-blur-md">
+                        <h3 class="font-cinzel text-imperial-lightgold text-base font-bold mb-1">Rùa & Hạc Đồng</h3>
+                        <p class="text-xs text-gray-400">Tượng trưng cho sự trường thọ vĩnh cửu của vương triều và vị thế Hoàng đế.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: BI KỊCH LỊCH SỬ -->
+        <div class="slide" data-index="13" data-fx="ink">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="animate-item delay-1 text-imperial-gold font-cinzel text-xs tracking-[0.3em] uppercase">Chương XIII • Hoàng Hôn Phong Kiến</div>
+                    <h2 class="animate-item delay-2 font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        BI KỊCH & <br/><span class="gold-gradient-text">ĐÊM TRƯỜNG LỊCH SỬ</span>
+                    </h2>
+                    <p class="animate-item delay-3 font-cormorant text-xl text-gray-300 leading-relaxed">
+                        Cố Cung trải qua hàng chục vụ hỏa hoạn thảm khốc và những biến cố lịch sử dữ dội. Năm 1912, Hoàng đế Phổ Nghi thoái vị, chấm dứt hơn 2000 năm chế độ phong kiến Trung Hoa.
+                    </p>
+
+                    <div class="animate-item delay-4 grid grid-cols-2 gap-4 text-xs font-sans">
+                        <div class="p-4 bg-imperial-dark/80 border-l-2 border-imperial-red">
+                            <h4 class="font-cinzel text-imperial-lightgold font-bold">1912</h4>
+                            <p class="text-gray-400">Nhà Thanh sụp đổ, Phổ Nghi thoái vị.</p>
+                        </div>
+                        <div class="p-4 bg-imperial-dark/80 border-l-2 border-imperial-red">
+                            <h4 class="font-cinzel text-imperial-lightgold font-bold">1924</h4>
+                            <p class="text-gray-400">Phổ Nghi bị trục xuất khỏi Tử Cấm Thành.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 animate-item delay-3">
+                    <div class="morph-card border border-imperial-gold/30 p-2 bg-black/80" onclick="expandImage(this)">
+                        <img src="https://images.unsplash.com/photo-1528164344705-47542687990d?q=80&w=1000&auto=format&fit=crop" alt="Fall of Dynasty" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: BẢO TÀNG CỐ CUNG NGÀY NAY -->
+        <div class="slide" data-index="14" data-fx="zoom">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="fog-layer"></div>
+            <div class="vignette-overlay"></div>
+            
+            <div class="slide-content relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+                <div class="animate-item delay-1 w-20 h-20 rounded-full bg-imperial-gold/10 border-2 border-imperial-gold flex items-center justify-center mb-6 text-imperial-lightgold shadow-[0_0_30px_rgba(212,175,55,0.5)]">
+                    <i class="fa-solid fa-landmark text-3xl"></i>
+                </div>
+
+                <div class="animate-item delay-2 text-imperial-gold font-cinzel text-xs tracking-[0.5em] uppercase mb-2">Chương Kết • Di Sản Thế Giới UNESCO</div>
+
+                <h2 class="animate-item delay-3 font-cinzelDeco text-3xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+                    BẢO TÀNG CỐ CUNG <br/><span class="gold-gradient-text">RẠNG RỠ VĨNH HẰNG</span>
+                </h2>
+
+                <p class="animate-item delay-4 font-cormorant text-xl sm:text-2xl text-gray-200 max-w-3xl mb-8 leading-relaxed">
+                    Được UNESCO công nhận là Di sản Thế giới vào năm 1987. Ngày nay, Bảo tàng Cố Cung lưu giữ hơn 1.86 triệu cổ vật vô giá, đón tiếp hàng chục triệu du khách khắp thế giới mỗi năm.
+                </p>
+
+                <div class="animate-item delay-5 flex gap-6">
+                    <button onclick="goToSlide(0)" class="px-10 py-4 bg-imperial-gold text-imperial-dark font-cinzel font-bold tracking-[0.2em] text-xs hover:bg-imperial-lightgold transition-all duration-500 shadow-[0_0_35px_rgba(212,175,55,0.7)]">
+                        TRỞ VỀ BAN ĐẦU <i class="fa-solid fa-rotate-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Timeline Footer Overlay -->
+    <footer class="fixed bottom-0 left-0 w-full z-50 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4 pointer-events-none">
+        
+        <!-- Controls Legend -->
+        <div class="text-gray-400 text-[10px] font-cinzel tracking-widest uppercase flex items-center space-x-4 pointer-events-auto">
+            <span><i class="fa-solid fa-computer-mouse text-imperial-gold mr-1"></i> Cuộn chuột / Phím [←][→][Space] / Touch Swipe</span>
+        </div>
+
+        <!-- Royal Timeline Nodes -->
+        <div class="w-full md:w-1/3 pointer-events-auto flex flex-col gap-2">
+            <div class="timeline-track w-full rounded-full">
+                <div id="timelineProgress" class="timeline-progress w-0"></div>
+            </div>
+            <div class="flex justify-between items-center px-1" id="timelineNodes">
+                <!-- Dynamically populated 15 nodes -->
+            </div>
+        </div>
+
+        <!-- Arrow Navigation Buttons -->
+        <div class="flex items-center space-x-3 pointer-events-auto">
+            <button onclick="prevSlide()" class="glass-btn w-10 h-10 rounded-full flex items-center justify-center text-imperial-gold">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <button onclick="nextSlide()" class="glass-btn w-10 h-10 rounded-full flex items-center justify-center text-imperial-gold">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- DRAWER SIDEBAR: Slide Thumbnails -->
+    <aside id="drawerSidebar" class="drawer closed fixed top-0 right-0 h-full w-80 z-[80] bg-imperial-dark/95 border-l border-imperial-gold/30 backdrop-blur-xl p-6 overflow-y-auto flex flex-col justify-between">
+        <div>
+            <div class="flex items-center justify-between pb-4 mb-6 border-b border-imperial-gold/30">
+                <h3 class="font-cinzel text-imperial-gold text-sm font-bold tracking-widest">DANH SÁCH 15 SLIDE</h3>
+                <button onclick="toggleDrawer()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="drawerList" class="space-y-3">
+                <!-- Dynamically filled with thumbnails -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- OVERVIEW GRID MODAL -->
+    <div id="overviewModal" class="modal-overview closed fixed inset-0 z-[90] bg-black/95 backdrop-blur-2xl p-8 overflow-y-auto">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between pb-6 mb-8 border-b border-imperial-gold/30">
+                <h2 class="font-cinzel text-2xl text-imperial-gold font-bold">TOÀN BỘ 15 SLIDES CỐ CUNG</h2>
+                <button onclick="toggleOverviewModal()" class="glass-btn px-4 py-2 rounded-full text-xs text-imperial-gold font-cinzel">ĐÓNG [ESC]</button>
+            </div>
+            <div id="overviewGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                <!-- Dynamically filled with grid cards -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN IMAGE MODAL -->
+    <div id="imageModal" class="fixed inset-0 z-[100] bg-black/95 opacity-0 pointer-events-none transition-all duration-500 flex items-center justify-center p-6" onclick="closeImage()">
+        <img id="modalImg" src="" class="max-w-full max-h-full object-contain border border-imperial-gold/50 shadow-[0_0_50px_rgba(212,175,55,0.4)] transition-transform duration-500 scale-90">
+    </div>
+
+    <!-- Audio & Controller Scripts -->
+    <script>
+        const slideTitles = [
+            "1. Trụ Vũ & Khai Cụ",
+            "2. Lịch Sử Khởi Dựng",
+            "3. Trục Thần Đạo",
+            "4. Ngọ Môn",
+            "5. Thái Hòa Điện",
+            "6. Ngai Vàng Long Tòa",
+            "7. Trung Hòa & Bảo Hòa Điện",
+            "8. Càn Thanh Môn",
+            "9. Càn Thanh Cung",
+            "10. Khôn Ninh Cung",
+            "11. Ngự Hoa Viên",
+            "12. Mái Ngói Lưu Ly",
+            "13. Linh Vật Trấn Giữ",
+            "14. Bi Kịch Lịch Sử",
+            "15. Bảo Tàng Cố Cung"
+        ];
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const currentSlideNumEl = document.getElementById('currentSlideNum');
+        const totalSlideNumEl = document.getElementById('totalSlideNum');
+        const timelineProgress = document.getElementById('timelineProgress');
+        const timelineNodes = document.getElementById('timelineNodes');
+
+        let isTransitioning = false;
+        let touchStartY = 0;
+        let touchStartX = 0;
+
+        // Web Audio API Synthesizer
+        let audioCtx = null;
+        let isAudioMuted = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playTransitionSound() {
+            if (isAudioMuted || !audioCtx) return;
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            // Synthesize Deep Imperial Gong & Flute Sound
+            const osc1 = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(108, audioCtx.currentTime); 
+            osc1.frequency.exponentialRampToValueAtTime(36, audioCtx.currentTime + 2.0);
+
+            osc2.type = 'triangle';
+            osc2.frequency.setValueAtTime(216, audioCtx.currentTime);
+            osc2.frequency.exponentialRampToValueAtTime(72, audioCtx.currentTime + 1.5);
+
+            gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
+
+            osc1.connect(gain);
+            osc2.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc1.start();
+            osc2.start();
+            osc1.stop(audioCtx.currentTime + 2.0);
+            osc2.stop(audioCtx.currentTime + 2.0);
+        }
+
+        function toggleAudio() {
+            initAudio();
+            isAudioMuted = !isAudioMuted;
+            const btn = document.getElementById('soundToggleBtn');
+            const icon = document.getElementById('soundIcon');
+            const text = document.getElementById('soundText');
+
+            if (!isAudioMuted) {
+                btn.classList.add('playing');
+                icon.className = 'fa-solid fa-volume-high';
+                text.textContent = 'ÂM THANH: BẬT';
+                playTransitionSound();
+            } else {
+                btn.classList.remove('playing');
+                icon.className = 'fa-solid fa-volume-xmark';
+                text.textContent = 'ÂM THANH: TẮT';
+            }
+        }
+
+        // Initialize Slider & UI Elements
+        function initSlider() {
+            totalSlideNumEl.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides;
+            
+            // Build Footer Nodes
+            timelineNodes.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const node = document.createElement('button');
+                node.className = `w-2 h-2 rounded-full border border-imperial-gold/60 transition-all ${i === 0 ? 'bg-imperial-lightgold scale-125' : 'bg-imperial-dark'}`;
+                node.title = slideTitles[i];
+                node.onclick = () => goToSlide(i);
+                timelineNodes.appendChild(node);
+            }
+
+            buildDrawerList();
+            buildOverviewGrid();
+            updateSlideState();
+            initParticles();
+            initParallax();
+        }
+
+        function buildDrawerList() {
+            const drawerList = document.getElementById('drawerList');
+            drawerList.innerHTML = '';
+            slideTitles.forEach((title, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-3 rounded border border-imperial-gold/20 hover:border-imperial-gold/60 cursor-pointer text-xs font-cinzel transition-all flex justify-between items-center ${idx === currentSlide ? 'bg-imperial-red/50 text-imperial-lightgold border-imperial-gold' : 'bg-imperial-dark/60 text-gray-300'}`;
+                item.innerHTML = `<span>${title}</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>`;
+                item.onclick = () => {
+                    goToSlide(idx);
+                    toggleDrawer();
+                };
+                drawerList.appendChild(item);
+            });
+        }
+
+        function buildOverviewGrid() {
+            const overviewGrid = document.getElementById('overviewGrid');
+            overviewGrid.innerHTML = '';
+            slideTitles.forEach((title, idx) => {
+                const card = document.createElement('div');
+                card.className = `p-4 rounded border border-imperial-gold/30 hover:border-imperial-lightgold bg-imperial-dark/90 cursor-pointer transition-all hover:scale-105 flex flex-col justify-between h-28 text-center ${idx === currentSlide ? 'ring-2 ring-imperial-gold' : ''}`;
+                card.innerHTML = `
+                    <span class="text-[10px] text-imperial-gold font-cinzel">SLIDE ${idx + 1}</span>
+                    <h4 class="font-cinzel text-xs text-white font-bold">${title}</h4>
+                    <span class="text-[9px] text-gray-500">Nhấp để xem</span>
+                `;
+                card.onclick = () => {
+                    goToSlide(idx);
+                    toggleOverviewModal();
+                };
+                overviewGrid.appendChild(card);
+            });
+        }
+
+        function updateSlideState() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'leaving');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (Math.abs(index - currentSlide) === 1) {
+                    slide.classList.add('leaving');
+                }
+            });
+
+            // Update Slide Counter
+            currentSlideNumEl.textContent = (currentSlide + 1) < 10 ? `0${currentSlide + 1}` : currentSlide + 1;
+
+            // Update Progress Bar
+            const progressPercent = (currentSlide / (totalSlides - 1)) * 100;
+            timelineProgress.style.width = `${progressPercent}%`;
+
+            // Update Nodes
+            const nodes = timelineNodes.children;
+            Array.from(nodes).forEach((node, index) => {
+                if (index === currentSlide) {
+                    node.className = 'w-2.5 h-2.5 rounded-full bg-imperial-lightgold shadow-[0_0_10px_#FFD700] scale-125';
+                } else {
+                    node.className = 'w-2 h-2 rounded-full bg-imperial-dark border border-imperial-gold/40 hover:bg-imperial-gold/40';
+                }
+            });
+
+            buildDrawerList();
+            buildOverviewGrid();
+            playTransitionSound();
+
+            isTransitioning = true;
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 1200);
+        }
+
+        function goToSlide(index) {
+            if (isTransitioning || index === currentSlide) return;
+            if (index >= 0 && index < totalSlides) {
+                currentSlide = index;
+                updateSlideState();
+            }
+        }
+
+        function nextSlide() {
+            if (isTransitioning) return;
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+            } else {
+                currentSlide = 0;
+            }
+            updateSlideState();
+        }
+
+        function prevSlide() {
+            if (isTransitioning) return;
+            if (currentSlide > 0) {
+                currentSlide--;
+            } else {
+                currentSlide = totalSlides - 1;
+            }
+            updateSlideState();
+        }
+
+        function toggleDrawer() {
+            document.getElementById('drawerSidebar').classList.toggle('closed');
+        }
+
+        function toggleOverviewModal() {
+            document.getElementById('overviewModal').classList.toggle('closed');
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Mouse Wheel Navigation
+        window.addEventListener('wheel', (e) => {
+            if (isTransitioning) return;
+            if (e.deltaY > 30) {
+                nextSlide();
+            } else if (e.deltaY < -30) {
+                prevSlide();
+            }
+        }, { passive: true });
+
+        // Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+                prevSlide();
+            } else if (e.key === 'Escape') {
+                document.getElementById('overviewModal').classList.add('closed');
+                document.getElementById('drawerSidebar').classList.add('closed');
+            }
+        });
+
+        // Touch Navigation
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', (e) => {
+            const deltaY = e.changedTouches[0].screenY - touchStartY;
+            const deltaX = e.changedTouches[0].screenX - touchStartX;
+
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                if (deltaX < -50) nextSlide();
+                if (deltaX > 50) prevSlide();
+            } else {
+                if (deltaY < -50) nextSlide();
+                if (deltaY > 50) prevSlide();
+            }
+        }, false);
+
+        // Expandable Image
+        function expandImage(cardEl) {
+            const img = cardEl.querySelector('img');
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+
+            modalImg.src = img.src;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalImg.classList.remove('scale-90');
+            modalImg.classList.add('scale-100');
+        }
+
+        function closeImage() {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalImg.classList.remove('scale-100');
+            modalImg.classList.add('scale-90');
+        }
+
+        // Parallax Effect
+        function initParallax() {
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 18;
+                const y = (e.clientY / window.innerHeight - 0.5) * 18;
+
+                const activeSlide = document.querySelector('.slide.active .slide-content');
+                if (activeSlide) {
+                    activeSlide.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+                }
+            });
+        }
+
+        // Gold Dust Particle Canvas Engine
+        function initParticles() {
+            const canvas = document.getElementById('particleCanvas');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const particles = [];
+            const count = 75;
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2.5 + 0.5,
+                    speedX: (Math.random() - 0.5) * 0.35,
+                    speedY: -Math.random() * 0.5 - 0.1,
+                    opacity: Math.random() * 0.8 + 0.2
+                });
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+
+                    if (p.y < 0) {
+                        p.y = canvas.height;
+                        p.x = Math.random() * canvas.width;
+                    }
+
+                    ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
+                    ctx.shadowBlur = 6;
+                    ctx.shadowColor = '#FFD700';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(render);
+            }
+
+            render();
+        }
+
+        window.onload = initSlider;
+    </script>
+</body>
+</html>
+```
